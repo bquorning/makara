@@ -21,7 +21,7 @@ if RUBY_ENGINE == 'ruby' &&
     let(:connection) { ActiveRecord::Base.connection }
 
     before :each do
-      ActiveRecord::Base.clear_all_connections!
+      clear_all_connections!
       change_context
     end
 
@@ -132,7 +132,7 @@ if RUBY_ENGINE == 'ruby' &&
       it 'should raise error only on write' do
         ActiveRecord::Base.establish_connection(config)
         load(File.dirname(__FILE__) + '/../../support/schema.rb')
-        ActiveRecord::Base.clear_all_connections!
+        clear_all_connections!
 
         custom_config = config.deep_dup
         custom_config['makara']['connections'].select { |h| h['role'] == 'primary' }.each { |h| h['port'] = '1' }

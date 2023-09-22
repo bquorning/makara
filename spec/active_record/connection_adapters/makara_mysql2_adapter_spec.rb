@@ -11,7 +11,7 @@ describe 'MakaraMysql2Adapter' do
   let(:connection) { ActiveRecord::Base.connection }
 
   before :each do
-    ActiveRecord::Base.clear_all_connections!
+    clear_all_connections!
     change_context
   end
 
@@ -57,7 +57,7 @@ describe 'MakaraMysql2Adapter' do
 
     context "unconnect afterwards" do
       after :each do
-        ActiveRecord::Base.clear_all_connections!
+        clear_all_connections!
       end
 
       it 'should not blow up if a connection fails' do

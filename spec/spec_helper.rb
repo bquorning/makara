@@ -38,6 +38,14 @@ RSpec.configure do |config|
     RSpec::Mocks.space.proxy_for(ActiveRecord::Base).reset # make sure not stubbed in some way
   end
 
+  def clear_all_connections!
+    if ActiveRecord::VERSION::MAJOR == 7 && ActiveRecord::VERSION::MINOR >= 1
+      ActiveRecord::Base.connection_handler.clear_all_connections!
+    else
+      ActiveRecord::Base.clear_all_connections!
+    end
+  end
+
   def change_context
     Makara::Context.set_current({})
   end
